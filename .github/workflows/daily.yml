@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # 允许推送
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,17 +19,28 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate daily page
+      - name: Generate daily page (never fail job)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4o
           REPO_URL: ${{ vars.REPO_URL }}
         run: |
-          node -v
-          npm -v || true
-          node scripts/generate.js
+          set -e
+          echo "Node: $(node -v)"
+          echo "Running generator..."
+          # 允许脚本内部异常后继续执行后续诊断，但不让这一步让工作流失败
+          node scripts/generate.js || echo "::warning ::generator returned non-zero exit code"
 
-      - name: Commit & Push if changed
+          echo "---- TREE AFTER GENERATE ----"
+          ls -lah
+          echo "---- DAILY DIR ----"
+          ls -lah daily || true
+          echo "---- ARCHIVE.JSON ----"
+          test -f archive.json && cat archive.json || echo "archive.json not found"
+        shell: bash
+        continue-on-error: true
+
+      - name: Commit & Push if changed (never fail job)
         run: |
           git config user.name "deep-daily-bot"
           git config user.email "bot@example.com"
@@ -38,5 +49,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "chore: daily build $(date -u +'%Y-%m-%d')"
-            git push
+            git push || echo "::warning ::push failed (check branch permissions)"
           fi
+        shell: bash
+        continue-on-error: true
