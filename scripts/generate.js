@@ -2,6 +2,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+// —— 模型与长度 ——
+// 可用环境变量覆盖：OPENAI_MODEL
+const MODEL = process.env.OPENAI_MODEL || "gpt-4o"; // 或用性价比 "gpt-4o-mini"
+const MAX_TOKENS = 6000; // 足够长，避免被截断
+
+const body = {
+  model: MODEL,
+  messages: [
+    { role: "system", content: system },
+    { role: "user", content: user }
+  ],
+  temperature: 0.2,
+  max_tokens: MAX_TOKENS
+};
+
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // 在 GitHub Actions 配置
 const REPO_URL = process.env.REPO_URL || "";       // 可用于RSS中的 link
 
