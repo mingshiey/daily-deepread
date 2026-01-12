@@ -155,7 +155,7 @@ function fallbackHTML() {
     </article>
   </section>
   <footer>
-    归档：<a href="/archive.json">/archive.json</a> ｜ RSS：<a href="/feed.xml">/feed.xml</a>
+    归档：<a href="archive.json">archive.json</a> ｜ RSS：<a href="feed.xml">feed.xml</a>
   </footer>
 </body>
 </html>`;
