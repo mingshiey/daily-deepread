@@ -1,0 +1,35 @@
+name: Daily Build
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # 每天 08:00 UTC 生成；按需改时区
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate daily page
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REPO_URL: ${{ vars.REPO_URL }}
+        run: |
+          npm run generate
+
+      - name: Commit & Push
+        run: |
+          git config user.name "deep-daily-bot"
+          git config user.email "bot@example.com"
+          git add .
+          git commit -m "chore: daily build $(date -u +'%Y-%m-%d')"
+          git push
