@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>每日深读</title>
+    <link></link>
+    <description>每日深读归档</description>
+    
+    <item>
+      <title>每日深读 - 2026-01-12</title>
+      <link>daily/2026-01-12.html</link>
+      <guid>daily/2026-01-12.html</guid>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
