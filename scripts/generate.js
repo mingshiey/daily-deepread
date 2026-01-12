@@ -166,7 +166,7 @@ function updateArchive(title) {
   const entry = {
     date: dateStr,
     title,
-    path: `/daily/${dateStr}.html`
+    path: `daily/${dateStr}.html`
   };
   const exists = archive.some(x => x.date === dateStr);
   const next = exists ? archive.map(x => x.date === dateStr ? entry : x) : [entry, ...archive];
