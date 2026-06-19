@@ -6,6 +6,13 @@
   <description>每日深读归档</description>
   
   <item>
+    <title>每日深读 - 2026-06-19</title>
+    <link>daily/2026-06-19.html</link>
+    <guid>daily/2026-06-19.html</guid>
+    <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+  </item>
+
+  <item>
     <title>每日深读 - 2026-06-18</title>
     <link>daily/2026-06-18.html</link>
     <guid>daily/2026-06-18.html</guid>
@@ -206,13 +213,6 @@
     <link>daily/2026-05-19.html</link>
     <guid>daily/2026-05-19.html</guid>
     <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
-  </item>
-
-  <item>
-    <title>每日深读 - 2026-05-18</title>
-    <link>daily/2026-05-18.html</link>
-    <guid>daily/2026-05-18.html</guid>
-    <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
   </item>
 </channel>
 </rss>
